@@ -1,0 +1,128 @@
+<!-- dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - Islamic Quiz</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9fdfb;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    .quote, .note, .benefits, .payment-info {
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+    .quote {
+      background:#dff0d8;
+      padding:10px;
+      border-left:5px solid #4caf50;
+    }
+    .note {
+      background-color: #e9f5ff;
+      padding: 10px;
+      border-left: 4px solid #3498db;
+    }
+    .payment-info {
+      background-color: #fffbe6;
+      padding: 10px;
+      border-left: 5px solid #f1c40f;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    select, input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .link {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .link a {
+      text-decoration: none;
+      color: #3498db;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Welcome to Your Dashboard</h2>
+
+    <div class="quote">
+      "وَقُل رَّبِّ زِدْنِي عِلْمًا" – Surah Taha (114)<br/>
+      <em>"O my Lord, increase me in knowledge"</em>
+    </div>
+
+    <label for="plan">Choose Your Plan:</label>
+    <select id="plan" onchange="updatePlanDetails()">
+      <option value="1000">Rs. 1000 Plan</option>
+      <option value="1500" selected>Rs. 1500 Plan</option>
+      <option value="2000">Rs. 2000 Plan</option>
+    </select>
+
+    <div class="note" id="fee-note">
+      <strong>Registration Fee:</strong> Rs. 1500 (One Time)
+    </div>
+
+    <div class="benefits">
+      <ul>
+        <li>✅ Earn Rs. <span id="total-earning">900</span> Daily by Tasks</li>
+        <li>✅ Rs. <span id="referral">500</span> Bonus for Referring 2 Friends</li>
+        <li>✅ Rs. <span id="qa">400</span> for Answering 2 Daily Questions</li>
+      </ul>
+    </div>
+
+    <div class="payment-info">
+      <strong>JazzCash Payment:</strong><br>
+      Account No: <strong>03093069635</strong><br>
+      Account Name: <strong>Naima Bibi</strong>
+    </div>
+
+    <label for="screenshot">Upload Payment Screenshot:</label>
+    <input type="file" id="screenshot" name="screenshot" accept="image/*" required />
+
+    <div class="link">
+      🔗 <a href="profile.html">View My Profile</a>
+    </div>
+  </div>
+
+  <script>
+    const plans = {
+      1000: { fee: 1000, referral: 350, qa: 250 },
+      1500: { fee: 1500, referral: 500, qa: 400 },
+      2000: { fee: 2000, referral: 650, qa: 550 }
+    };
+
+    function updatePlanDetails() {
+      const selected = document.getElementById("plan").value;
+      const plan = plans[selected];
+      document.getElementById("fee-note").innerHTML = `<strong>Registration Fee:</strong> Rs. ${plan.fee} (One Time)`;
+      document.getElementById("referral").innerText = plan.referral;
+      document.getElementById("qa").innerText = plan.qa;
+      document.getElementById("total-earning").innerText = plan.referral + plan.qa;
+    }
+
+    window.onload = updatePlanDetails;
+  </script>
+</body>
+</html>
